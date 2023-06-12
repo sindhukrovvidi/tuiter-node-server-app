@@ -16,12 +16,27 @@ app.use(
 );
 
 app.use(express.json());
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://tuiter-node-server-app-vltx.onrender.com/api",
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "https://tuiter-node-server-app-vltx.onrender.com/api",
+//   })
+// );
+app.use((req, res, next) => {
+  const allowedOrigins = ["http://localhost:3000", "https://a5--sindhu-tuiter-app.netlify.app/"];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+      res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
+
 HelloController(app);
 UserController(app);
 TuitsController(app);
