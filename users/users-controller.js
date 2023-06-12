@@ -5,9 +5,10 @@ const UserController = (app) => {
   app.get("/api/users/:uid", findUserById);
   app.post("/api/users", createUser);
   app.delete("/api/users/:uid", deleteUser);
-  app.put('/api/users/:uid', updateUser);
+  // app.put('/api/users/:uid', updateUser);
 
 };
+
 const findUsers = (req, res) => {
   const type = req.query.type;
   if (type) {
@@ -41,6 +42,7 @@ const updateUser = (req, res) => {
   users = users.map((usr) =>
     usr._id === userId ? { ...usr, ...updates } : usr
   );
+  // res.json(use)
   res.sendStatus(200);
 };
 
