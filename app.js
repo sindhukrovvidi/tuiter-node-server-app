@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://tuiter-node-server-app-vltx.onrender.com/api"],
   })
 );
 HelloController(app);
