@@ -43,7 +43,7 @@ const AuthController = (app) => {
   const update = async (req, res) => {
     const currUser = await usersDao.updateUser(req.body._id, req.body);
     if (currUser) {
-      currentUserVar = currUser;
+      currentUserVar = currUser.user;
       return res.json(currentUserVar);
     } else {
       res.sendStatus(500);
